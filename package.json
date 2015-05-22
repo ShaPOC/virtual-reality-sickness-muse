@@ -1,0 +1,22 @@
+{
+  "name": "virtual-reality-sickness-muse",
+  "version": "0.0.1",
+  "description": "An interface for use with the ue4-vrs-prototype for measuring EEG signals using node-muse and the muse brainband.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaPOC/virtual-reality-sickness-muse.git"
+  },
+  "author": "Jimmy Aupperlee <j.aup.gt@gmail.com>",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/ShaPOC/virtual-reality-sickness-muse/issues"
+  },
+  "homepage": "https://github.com/ShaPOC/virtual-reality-sickness-muse.git",
+  "dependencies": {
+    "node-muse": "^0.1.0"
+  }
+}
