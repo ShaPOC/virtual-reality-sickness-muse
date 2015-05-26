@@ -100,7 +100,7 @@ var sickness_socket = (function($, Handlebars){
 
         if( typeof data[phase][key] === 'undefined' ) {
 
-            var elem = data[phase]["element"].append(phase_table_template({
+            data[phase]["element"].append(phase_table_template({
                 name : key,
                 min : 0,
                 average : 0,
@@ -112,7 +112,7 @@ var sickness_socket = (function($, Handlebars){
                 max : null,
                 average : null,
                 buildup : [],
-                element : $(elem),
+                element : data[phase]["element"].find("[data-name='"+key+"']"),
                 timer : null
             };
         }
@@ -121,10 +121,10 @@ var sickness_socket = (function($, Handlebars){
     var createPhaseObject = function() {
 
         if( typeof data[phase] === 'undefined' ) {
-            var elem = phases.append(phase_template({
+            phases.append(phase_template({
                 phase : phase
             }));
-            data[phase] = { element : $(elem) };
+            data[phase] = { element : phases.find("table#phase-table-" + phase).children("tbody") };
         }
     };
 
