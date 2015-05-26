@@ -41,11 +41,11 @@ var sickness_socket = (function($, Handlebars){
         });
 
         $("#connected_button").on("click", function(){
-            $("a#json-download").remove();
-            var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data)),
+            $("#json-download").remove();
+            var json = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data)),
                 date = new Date(),
                 formattedDate = date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
-            $('<li id="json-download"><a href="data:' + data + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
+            $('<li id="json-download"><a href="data:' + json + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
         });
 
         // Precompile some handlebars templates for efficiency
