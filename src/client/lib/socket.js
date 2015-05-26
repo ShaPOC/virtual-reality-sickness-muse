@@ -40,12 +40,12 @@ var sickness_socket = (function($, Handlebars){
             return false;
         });
 
-        $("a#json-download").off("click").on("click", function(event){
-            event.preventDefault();
-            var date = new Date();
-            $(this).attr("download", "data-" + date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds()+".json")
-                .attr("href", "data:text/json;charset=utf-8,'" + encodeURIComponent(JSON.stringify(data)) + "'").trigger("click");
-            return false;
+        $("#connected_button").on("click", function(){
+            $("a#json-download").remove();
+            var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data)),
+                date = new Date(),
+                formattedDate = date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
+            $('<li id="json-download"><a href="data:' + data + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
         });
 
         // Precompile some handlebars templates for efficiency
