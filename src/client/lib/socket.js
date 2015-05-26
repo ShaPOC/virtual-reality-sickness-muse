@@ -54,11 +54,11 @@ var sickness_socket = (function($, Handlebars){
                 }
             });
 
-            var json = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data)),
+            var json = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cleanedData)),
                 date = new Date(),
                 formattedDate = date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
 
-            $('<li id="json-download"><a href="data:' + cleanedData + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
+            $('<li id="json-download"><a href="data:' + json + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
         });
 
         // Precompile some handlebars templates for efficiency
