@@ -42,9 +42,22 @@ var sickness_socket = (function($, Handlebars){
 
         $("#connected_button").on("click", function(){
             $("#json-download").remove();
+
+            // Cleanup some unneeded values
+            var cleanedData = $.extend(true, {}, data);
+            delete cleanedData["element"];
+            $.each(cleanedData, function(x, value){
+                if(typeof value === "object") {
+                    $.each(value, function(y, inside){
+                        delete inside["element"];
+                    });
+                }
+            });
+
             var json = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data)),
                 date = new Date(),
                 formattedDate = date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
+
             $('<li id="json-download"><a href="data:' + json + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
         });
 
