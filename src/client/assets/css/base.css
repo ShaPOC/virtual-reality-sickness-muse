@@ -1,0 +1,109 @@
+body {
+    background-color: #2a2d37;
+}
+.navbar-inverse {
+    background-color: #434a54;
+    border-color: #434a54;
+}
+@media (min-width: 768px) {
+    .navbar-right {
+        margin-right: 0px;
+    }
+}
+
+body.disconnected .hidden-on-disconnected {
+    display: none;
+}
+
+body #connection_buttons .btn {
+    display: none;
+}
+body.connected #connection_buttons #connected_button {
+    display: inline-block;
+}
+body.uncertain #connection_buttons #connection_uncertain_button {
+    display: inline-block;
+}
+body.disconnected #connection_buttons #not_connected_button {
+    display: inline-block;
+}
+.jumbotron-contents {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+table#raw-table {
+    margin: 0px;
+}
+table#raw-table tbody tr td {
+    text-align: center;
+    position: relative;
+}
+table#raw-table tbody tr td button {
+    width: 100px;
+}
+
+.jumbotron-contents {
+    -webkit-transition: color 500ms 500ms ease-in-out, background 500ms 500ms ease-in-out;
+    transition: color 500ms 500ms ease-in-out, background 500ms 500ms ease-in-out;
+}
+.progress-bar-success {
+    -webkit-transition:  width 500ms ease-in-out, color 500ms 500ms ease-in-out, background 500ms 500ms ease-in-out;
+    transition: width 500ms ease-in-out,color 500ms 500ms ease-in-out, background 500ms 500ms ease-in-out;
+}
+
+.excellent .jumbotron-contents {
+    background: #8cc152 !important;
+    color: #fff !important;
+}
+.excellent .progress-bar-success {
+    background-color: #fff !important;
+}
+
+.flot {
+    width: 100%;
+    height: 250px;
+}
+
+#battery {
+    margin: 0px;
+}
+#battery i {
+    font-size: 26pt;
+    position: relative;
+}
+#battery i:after {
+    position: absolute;
+    content: attr(data-percentage);
+    top: 14px;
+    left: 4px;
+    width: 18px;
+    text-align: center;
+    font-size: 7pt;
+}
+
+.spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
