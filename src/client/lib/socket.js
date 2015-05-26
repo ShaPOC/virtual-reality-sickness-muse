@@ -40,6 +40,14 @@ var sickness_socket = (function($, Handlebars){
             return false;
         });
 
+        $("a#json-download").off("click").on("click", function(event){
+            event.preventDefault();
+            var date = new Date();
+            $(this).attr("download", "data-" + date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds()+".json")
+                .attr("href", "data:text/json;charset=utf-8,'" + encodeURIComponent(JSON.stringify(data)) + "'").trigger("click");
+            return false;
+        });
+
         // Precompile some handlebars templates for efficiency
         phase_template = Handlebars.compile( $("#phase-template").html() );
         phase_table_template = Handlebars.compile( $("#phase-table-template").html() );
@@ -92,15 +100,32 @@ var sickness_socket = (function($, Handlebars){
     var setTableValues = function(key) {
 
         // Set the data in hte html
-        data[phase][key]["element"].children(".min").html( (data[phase][key]["min"]).toFixed(2) );
-        data[phase][key]["element"].children(".max").html( (data[phase][key]["max"]).toFixed(2) );
-        data[phase][key]["element"].children(".average").html( (data[phase][key]["average"]).toFixed(2) );
+        var minElement = data[phase][key]["element"].children(".min"),
+            minValue = (data[phase][key]["min"]).toFixed(2);
+
+        if( minElement.html() != minValue ) {
+            minElement.html( minValue ).addClass("changedValue").removeClass("changedValue");
+        }
+
+        var maxElement = data[phase][key]["element"].children(".max"),
+            maxValue = (data[phase][key]["max"]).toFixed(2);
+
+        if( maxElement.html() != maxValue ) {
+            maxElement.html( maxValue ).addClass("changedValue").removeClass("changedValue");
+        }
+
+        var averageElement = data[phase][key]["element"].children(".average"),
+            averageValue = (data[phase][key]["average"][data[phase][key]["average"].length - 1]).toFixed(2);
+
+        if( averageElement.html() != averageValue ) {
+            averageElement.html( averageValue ).addClass("changedValue").removeClass("changedValue");
+        }
     };
 
     var calculateAverage = function(key) {
 
         var total = data[phase][key]["buildup"].reduce(function(a, b){return a+b;});
-        data[phase][key]["average"] = total / data[phase][key]["buildup"].length;
+        data[phase][key]["average"].push(total / data[phase][key]["buildup"].length);
         data[phase][key]["buildup"] = [];
         data[phase][key]["timer"] = null;
     };
@@ -128,7 +153,7 @@ var sickness_socket = (function($, Handlebars){
             data[phase][key] = {
                 min : null,
                 max : null,
-                average : null,
+                average : [],
                 buildup : [],
                 element : data[phase]["element"].find("[data-name='"+key+"']"),
                 timer : null

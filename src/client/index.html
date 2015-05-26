@@ -41,6 +41,8 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a id="previous-phase" href="#">Previous phase</a></li>
                                         <li><a id="next-phase" href="#">Next phase</a></li>
+                                        <li class="divider"></li>
+                                        <li><a id="json-download" href="#">Download JSON data</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -87,15 +89,15 @@
 
             <div data-phase="{{ phase }}">
 
-                <h1>Phase {{ phase }}</h1>
+                <h3>Phase {{ phase }}</h3>
 
-                <table id="phase-table-{{ phase }}" class="table table-bordered">
+                <table id="phase-table-{{ phase }}" class="table table-bordered table-striped table-condensed">
 
                     <thead>
                         <tr>
                             <th>Value</th>
                             <th>Min</th>
-                            <th>Average</th>
+                            <th>Last average</th>
                             <th>Max</th>
                         </tr>
                     </thead>
