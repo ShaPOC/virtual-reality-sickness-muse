@@ -5,8 +5,12 @@ var sickness_socket = (function($){
          * Required modules
          */
         socket = io.connect('http://localhost:8080'),
+        /**
+         * Private variables
+         */
         body = null,
-        battery = null;
+        battery = null,
+        data = {};
 
     // Constructor function called from within a document ready
     self.init = function() {
@@ -24,6 +28,21 @@ var sickness_socket = (function($){
             body.removeClass("connected uncertain disconnected");
             body.addClass(state);
         }
+    };
+
+    self.setAbsoluteValue = function(key, value) {
+
+
+    };
+
+    self.setAverageValue = function(key, value) {
+
+
+    };
+
+    self.setCurrentPhase = function(phase) {
+
+
     };
 
     /**
@@ -97,19 +116,19 @@ var sickness_socket = (function($){
 
     });
 
-    socket.on('/muse/elements/theta_absolute', function(data){
+    socket.on('/muse/elements/theta_relative', function(data){
 
         console.log('Absolute Band Powers: Theta: ' + data.values);
 
     });
 
-    socket.on('/muse/elements/alpha_absolute', function(data){
+    socket.on('/muse/elements/alpha_relative', function(data){
 
         console.log('Absolute Band Powers: Alpha: ' + data.values);
 
     });
 
-    socket.on('/muse/elements/beta_absolute', function(data){
+    socket.on('/muse/elements/beta_relative', function(data){
 
         console.log('Absolute Band Powers: Beta: ' + data.values);
 
@@ -134,9 +153,9 @@ var sickness_socket = (function($){
             '/muse/elements/horseshoe',
             '/muse/elements/blink',
             '/muse/elements/jaw_clench',
-            '/muse/elements/theta_absolute',
-            '/muse/elements/alpha_absolute',
-            '/muse/elements/beta_absolute',
+            '/muse/elements/theta_relative',
+            '/muse/elements/alpha_relative',
+            '/muse/elements/beta_relative',
             '/muse/elements/experimental/concentration',
             '/muse/elements/experimental/mellow'
         ]
