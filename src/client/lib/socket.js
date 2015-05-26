@@ -58,7 +58,7 @@ var sickness_socket = (function($, Handlebars){
                 date = new Date(),
                 formattedDate = date.getFullYear() + "_" + (date.getMonth() + 1) + "_" + date.getDate() + "_" +  date.getHours() + "_" + date.getMinutes() + "_" + date.getSeconds();
 
-            $('<li id="json-download"><a href="data:' + json + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
+            $('<li id="json-download"><a href="data:' + cleanedData + '" download="data' + formattedDate + '.json">download JSON</a></li>').appendTo($(this).next());
         });
 
         // Precompile some handlebars templates for efficiency
