@@ -74,22 +74,58 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="hidden-on-disconnected row well">
-                        <table id="raw-table" class="table table-bordered">
-                            <tbody>
-                            </tbody>
-                        </table>
+                    <div id="phases" class="hidden-on-disconnected row well">
+
                     </div>
                 </div>
             </section>
 
         </div>
 
+        <script id="phase-template" type="text/x-handlebars-template">
+
+            <div data-phase="{{ phase }}" class="table table-bordered">
+
+                <h1>Phase {{ phase }}</h1>
+
+                <table id="phase-table-{{ phase }}">
+
+                    <thead>
+                        <tr>
+                            <th>Value</th>
+                            <th>Min</th>
+                            <th>Average</th>
+                            <th>Max</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </script>
+
+        <script id="phase-table-template" type="text/x-handlebars-template">
+
+            <tr data-name="{{ name }}">
+                <td>{{ name }}</td>
+                <td class="min">{{ min }}</td>
+                <td class="average">{{ average }}</td>
+                <td class="max">{{ max }}</td>
+            </tr>
+
+        </script>
+
         <script type="text/javascript" src="vendor/jquery/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="vendor/bootflat/js/icheck.min.js"></script>
         <script type="text/javascript" src="vendor/bootflat/js/jquery.fs.selecter.min.js"></script>
         <script type="text/javascript" src="vendor/bootflat/js/jquery.fs.stepper.min.js"></script>
+        <script type="text/javascript" src="vendor/handlebars/handlebars-v3.0.3.js"></script>
 
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="lib/socket.js"></script>
