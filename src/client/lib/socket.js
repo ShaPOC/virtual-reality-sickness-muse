@@ -26,6 +26,20 @@ var sickness_socket = (function($, Handlebars){
         battery = $("#battery i");
         phases = $("#phases");
 
+        $("a#previous-phase").off("click").on("click", function(event){
+            event.preventDefault();
+            if(phase > 0) {
+                self.setCurrentPhase( phase-- );
+            }
+            return false;
+        });
+
+        $("a#next-phase").off("click").on("click", function(event){
+            event.preventDefault();
+            self.setCurrentPhase( phase++ );
+            return false;
+        });
+
         // Precompile some handlebars templates for efficiency
         phase_template = Handlebars.compile( $("#phase-template").html() );
         phase_table_template = Handlebars.compile( $("#phase-table-template").html() );
@@ -70,14 +84,17 @@ var sickness_socket = (function($, Handlebars){
         calculateAllAverages();
         // Heighten the current phase or set a specific one
         phase = newPhase || ++phase;
+        // Set the active class
+        phases.children("div").removeClass("active");
+        phases.children("div[data-phase='" + phase + "']").addClass("active");
     };
 
     var setTableValues = function(key) {
 
         // Set the data in hte html
-        data[phase][key]["element"].children(".min").html( data[phase][key]["min"] );
-        data[phase][key]["element"].children(".max").html( data[phase][key]["max"] );
-        data[phase][key]["element"].children(".average").html( data[phase][key]["average"] );
+        data[phase][key]["element"].children(".min").html( (data[phase][key]["min"]).toFixed(2) );
+        data[phase][key]["element"].children(".max").html( (data[phase][key]["max"]).toFixed(2) );
+        data[phase][key]["element"].children(".average").html( (data[phase][key]["average"]).toFixed(2) );
     };
 
     var calculateAverage = function(key) {
@@ -85,6 +102,7 @@ var sickness_socket = (function($, Handlebars){
         var total = data[phase][key]["buildup"].reduce(function(a, b){return a+b;});
         data[phase][key]["average"] = total / data[phase][key]["buildup"].length;
         data[phase][key]["buildup"] = [];
+        data[phase][key]["timer"] = null;
     };
 
     var calculateAllAverages = function() {

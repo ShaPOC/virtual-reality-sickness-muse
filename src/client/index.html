@@ -39,7 +39,8 @@
                                 <div class="btn-group">
                                     <button type="button" id="connected_button" class="btn navbar-btn btn-success dropdown-toggle" data-toggle="dropdown">Connected <span class="caret"></span></button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Stuff will be cool here soon...</a></li>
+                                        <li><a id="previous-phase" href="#">Previous phase</a></li>
+                                        <li><a id="next-phase" href="#">Next phase</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -84,11 +85,11 @@
 
         <script id="phase-template" type="text/x-handlebars-template">
 
-            <div data-phase="{{ phase }}" class="table table-bordered">
+            <div data-phase="{{ phase }}">
 
                 <h1>Phase {{ phase }}</h1>
 
-                <table id="phase-table-{{ phase }}">
+                <table id="phase-table-{{ phase }}" class="table table-bordered">
 
                     <thead>
                         <tr>
