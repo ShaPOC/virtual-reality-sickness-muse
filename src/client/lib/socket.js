@@ -1,3 +1,5 @@
+'use strict';
+
 var sickness_socket = (function($, Handlebars){
 
     var self = {},
@@ -96,7 +98,7 @@ var sickness_socket = (function($, Handlebars){
 
     var createValue = function(key) {
 
-        if( data[phase][key] == null ) {
+        if( typeof data[phase][key] === 'undefined' ) {
 
             var elem = data[phase]["element"].append(phase_table_template({
                 name : key,
@@ -118,7 +120,7 @@ var sickness_socket = (function($, Handlebars){
 
     var createPhaseObject = function() {
 
-        if( data[phase] === null ) {
+        if( typeof data[phase] === 'undefined' ) {
             var elem = phases.append(phase_template({
                 phase : phase
             }));
