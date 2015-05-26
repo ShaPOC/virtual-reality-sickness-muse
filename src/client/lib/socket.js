@@ -96,7 +96,7 @@ var sickness_socket = (function($, Handlebars){
 
     var createValue = function(key) {
 
-        if( data[phase][key] ) {
+        if( data[phase][key] == null ) {
 
             var elem = data[phase]["element"].append(phase_table_template({
                 name : key,
