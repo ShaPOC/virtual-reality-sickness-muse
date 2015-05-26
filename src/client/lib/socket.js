@@ -115,7 +115,8 @@ var sickness_socket = (function($, Handlebars){
         }
 
         var averageElement = data[phase][key]["element"].children(".average"),
-            averageValue = (data[phase][key]["average"][data[phase][key]["average"].length - 1]).toFixed(2);
+            averageValue = (typeof data[phase][key]["average"][data[phase][key]["average"].length - 1] !== 'undefined')
+                ? (data[phase][key]["average"][data[phase][key]["average"].length - 1]).toFixed(2) : 0;
 
         if( averageElement.html() != averageValue ) {
             averageElement.html( averageValue ).addClass("changedValue").removeClass("changedValue");
