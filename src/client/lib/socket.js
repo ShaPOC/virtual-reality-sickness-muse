@@ -45,8 +45,8 @@ var sickness_socket = (function($, Handlebars){
 
             // Cleanup some unneeded values
             var cleanedData = $.extend(true, {}, data);
-            delete cleanedData["element"];
             $.each(cleanedData, function(x, value){
+                delete value["element"];
                 if(typeof value === "object") {
                     $.each(value, function(y, inside){
                         delete inside["element"];
