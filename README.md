@@ -47,6 +47,13 @@ Or if you're on __Windows__ it's probably something like;
 
 > node .\src\index.js
 
+The webserver will then open the node-muse server which will be waiting for connection of the Muse and it will open a HTTP server on port 8080. Both will be shown in the terminal;
+
+> Connecting to any available Muse using host; osc.udp://127.0.0.1:5002
+> HTTP server started and available on port: 8080
+
+Now just navigate your webbrowser to _localhost:8080_ connect your Muse via bluetooth and watch the magic happen through socket.io!
+
 ## Why specifically this data?
 
 So basically this webserver was used for a study in virtual reality sickness using the [Virtual Reality Sickness Testrooms](https://github.com/ShaPOC/ue4-vrs-prototype). Before this study and the creation of this software many other studies were read by me. 
